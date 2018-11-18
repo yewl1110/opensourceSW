@@ -180,13 +180,13 @@ LRESULT CScrollbarDlg::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
 		return 0;
 
 	case WM_VSCROLL:
-		ylnc = -20;
+		ylnc =0;
 		switch (LOWORD(wParam)) {
 		case SB_LINEUP:
-			ylnc = -40;
+			ylnc = -20;
 			break;
 		case SB_LINEDOWN:
-			ylnc = 40;
+			ylnc = 20;
 			break;
 		case SB_PAGEUP:
 			ylnc = -200;
