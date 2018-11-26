@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\BookManagement",
+    "\\BookManagement\\QT_example"
   ],
-  "SelectedNode": "\\Scrollbar.sln",
+  "SelectedNode": "\\BookManagement\\QT_example",
   "PreviewInSolutionExplorer": false
 }
