@@ -19,7 +19,6 @@ MainWindow::MainWindow(QWidget *parent) :
     db.setPassword("980809");
     qDebug() << db.open();
 
-
     model=new QSqlQueryModel();    //database teblemodel object
     model->setQuery("select * from b_info");
 
