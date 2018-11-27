@@ -1,14 +1,16 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QDebug>
-#include <QSortFilterProxyModel>
-
+#include <QMessageBox>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    textEdit=new QTextEdit();
+    ui->textEdit->setText("search");
 
     db=QSqlDatabase::addDatabase("QMYSQL");  //database connection
     db.setHostName("localhost");
@@ -21,7 +23,7 @@ MainWindow::MainWindow(QWidget *parent) :
     model=new QSqlQueryModel();    //database teblemodel object
     model->setQuery("select * from b_info");
 
-    QSortFilterProxyModel *m=new QSortFilterProxyModel(this);  //sort tablemodel object
+    m=new QSortFilterProxyModel(this);  //sort tablemodel object
     m->setDynamicSortFilter(true);
     m->setSourceModel(model);
 
@@ -42,5 +44,27 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_tableView_doubleClicked(const QModelIndex &index)
 {
-    model->sort(index.column());
+    QString str= QString::number(model->rowCount());
+    ui->textEdit->setText(str);
+}
+
+void MainWindow::on_pushButton_2_clicked()
+{
+  //  model->setQuery("insert into b_info values (") ;
+}
+
+void MainWindow::on_pushButton_3_clicked()
+{
+    if(model->rowCount()<=0){
+        QMessageBox *err=new QMessageBox();
+        err->setText("Data isn't exist!!");
+        err->setStandardButtons(QMessageBox::Yes);
+        err->show();
+        return;
+    }
+     //model->removeRow(1);
+    model->setQuery("delete from b_info where id = 1");
+    model->setQuery("select * from b_info");
+    m->setSourceModel(model);
+    ui->tableView->setModel(m);
 }
