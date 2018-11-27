@@ -50,7 +50,7 @@ void MainWindow::on_tableView_doubleClicked(const QModelIndex &index)
 
 void MainWindow::on_pushButton_2_clicked()
 {
-  //  model->setQuery("insert into b_info values (") ;
+  //  model->setQuery("insert into b_info values (") ; //data insert
 }
 
 void MainWindow::on_pushButton_3_clicked()
@@ -62,8 +62,8 @@ void MainWindow::on_pushButton_3_clicked()
         err->show();
         return;
     }
-     //model->removeRow(1);
-    model->setQuery("delete from b_info where id = 1");
+
+    model->setQuery("delete from b_info where id = 1");  //data delete
     model->setQuery("select * from b_info");
     m->setSourceModel(model);
     ui->tableView->setModel(m);
