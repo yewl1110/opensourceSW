@@ -20,6 +20,11 @@ MainWindow::MainWindow(QWidget *parent) :
     qDebug() << db.open();
 
     model=new QSqlQueryModel();    //database teblemodel object
+
+   /* for(int i=0;i<10;i++){
+        QString str=QString::number(i);
+        model->setQuery("insert into b_info(title,author,publisher,created,stored,rent) values ('" + str + "','aauthor','apubli','2018-3-2',5,2)");
+    }*/
     model->setQuery("select * from b_info");
 
     m=new QSortFilterProxyModel(this);  //sort tablemodel object
@@ -49,7 +54,21 @@ void MainWindow::on_tableView_doubleClicked(const QModelIndex &index)
 
 void MainWindow::on_pushButton_2_clicked()
 {
-  //  model->setQuery("insert into b_info values (") ; //data insert
+    QString str=QString::number(rand());
+    model->setQuery("insert into b_info(title,author,publisher,created,stored,rent) values ('" + str + "','aauthor','apubli','2018-3-2',5,2)");
+    model->setQuery("select * from b_info");
+
+    m=new QSortFilterProxyModel(this);  //sort tablemodel object
+    m->setDynamicSortFilter(true);
+    m->setSourceModel(model);
+
+    ui->tableView->setModel(m);   //tablewidget setting
+    ui->tableView->setColumnHidden(0,true);
+    ui->tableView->setSortingEnabled(true);
+
+    ui->tableView->verticalHeader()->hide();  //fixed size
+    ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Fixed);
+
 }
 
 void MainWindow::on_pushButton_3_clicked()
@@ -62,8 +81,22 @@ void MainWindow::on_pushButton_3_clicked()
         return;
     }
 
-    model->setQuery("delete from b_info where id = 1");  //data delete
+    ui->tableView->setColumnHidden(0,false); //get record id
+    QString id=model->data(ui->tableView->indexAt(QPoint(0,model->rowCount()))).toString();
+    ui->tableView->setColumnHidden(0,true);
+    qDebug() <<model->rowCount() << id;
+
+    model->setQuery("delete from b_info where id = " + id);  //data delete
     model->setQuery("select * from b_info");
+    m=new QSortFilterProxyModel(this);  //sort tablemodel object
+    m->setDynamicSortFilter(true);
     m->setSourceModel(model);
-    ui->tableView->setModel(m);
+
+    ui->tableView->setModel(m);   //tablewidget setting
+    ui->tableView->setColumnHidden(0,true);
+    ui->tableView->setSortingEnabled(true);
+
+    ui->tableView->verticalHeader()->hide();  //fixed size
+    ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Fixed);
+
 }
