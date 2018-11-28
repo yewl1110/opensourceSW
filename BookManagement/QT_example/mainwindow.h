@@ -31,7 +31,6 @@ private slots:
 private:
     Ui::MainWindow *ui;
     QSqlDatabase db;
-
     QTextEdit *textEdit;
 public:
     QSqlQueryModel *model;
