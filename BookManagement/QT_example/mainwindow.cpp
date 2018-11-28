@@ -21,10 +21,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
     model=new QSqlQueryModel();    //database teblemodel object
 
-   /* for(int i=0;i<10;i++){
-        QString str=QString::number(i);
-        model->setQuery("insert into b_info(title,author,publisher,created,stored,rent) values ('" + str + "','aauthor','apubli','2018-3-2',5,2)");
-    }*/
     model->setQuery("select * from b_info");
 
     m=new QSortFilterProxyModel(this);  //sort tablemodel object
