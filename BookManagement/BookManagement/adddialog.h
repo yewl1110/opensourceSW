@@ -14,12 +14,10 @@ class addDialog : public QDialog
 public:
     explicit addDialog(QWidget *parent = nullptr);
     ~addDialog();
-
+    Ui::addDialog *ui;
 private slots:
     void on_pushButton_clicked();
 
-private:
-    Ui::addDialog *ui;
 };
 
 #endif // ADDDIALOG_H

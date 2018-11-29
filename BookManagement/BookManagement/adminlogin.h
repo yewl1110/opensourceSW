@@ -14,9 +14,10 @@ class adminLogin : public QDialog
 public:
     explicit adminLogin(QWidget *parent = nullptr);
     ~adminLogin();
-
-private:
     Ui::adminLogin *ui;
+private slots:
+    void on_pushButton_clicked();
+
 };
 
 #endif // ADMINLOGIN_H

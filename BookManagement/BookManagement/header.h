@@ -6,5 +6,6 @@
 #include <QSortFilterProxyModel>
 #include <QDebug>
 #include <QMouseEvent>
+#include <QAction>
 
 #endif // HEADER_H

@@ -22,7 +22,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_MainWindow_t {
     QByteArrayData data[7];
-    char stringdata0[77];
+    char stringdata0[61];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -32,16 +32,16 @@ struct qt_meta_stringdata_MainWindow_t {
 static const qt_meta_stringdata_MainWindow_t qt_meta_stringdata_MainWindow = {
     {
 QT_MOC_LITERAL(0, 0, 10), // "MainWindow"
-QT_MOC_LITERAL(1, 11, 11), // "add_clicked"
-QT_MOC_LITERAL(2, 23, 0), // ""
-QT_MOC_LITERAL(3, 24, 13), // "login_clikced"
-QT_MOC_LITERAL(4, 38, 20), // "on_tableView_clicked"
-QT_MOC_LITERAL(5, 59, 11), // "QModelIndex"
-QT_MOC_LITERAL(6, 71, 5) // "index"
+QT_MOC_LITERAL(1, 11, 3), // "add"
+QT_MOC_LITERAL(2, 15, 0), // ""
+QT_MOC_LITERAL(3, 16, 5), // "login"
+QT_MOC_LITERAL(4, 22, 20), // "on_tableView_clicked"
+QT_MOC_LITERAL(5, 43, 11), // "QModelIndex"
+QT_MOC_LITERAL(6, 55, 5) // "index"
 
     },
-    "MainWindow\0add_clicked\0\0login_clikced\0"
-    "on_tableView_clicked\0QModelIndex\0index"
+    "MainWindow\0add\0\0login\0on_tableView_clicked\0"
+    "QModelIndex\0index"
 };
 #undef QT_MOC_LITERAL
 
@@ -77,8 +77,8 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         MainWindow *_t = static_cast<MainWindow *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->add_clicked(); break;
-        case 1: _t->login_clikced(); break;
+        case 0: _t->add(); break;
+        case 1: _t->login(); break;
         case 2: _t->on_tableView_clicked((*reinterpret_cast< const QModelIndex(*)>(_a[1]))); break;
         default: ;
         }

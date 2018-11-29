@@ -1,6 +1,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "tabledata.h"
+#include <QAction>
+#include "adminlogin.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -10,11 +12,8 @@ MainWindow::MainWindow(QWidget *parent) :
     tableData=new TableData();
     drow();
 
-    addDialog *ad;
-    ad=new addDialog;
-    ad->exec();
-    //add click event to menu
-    connect(ui->menuAdd,SIGNAL(clicked()),this,SLOT(add_clicked()));
+    createActions();
+    connectMenus();  //function of createActions() add to menuBar
 }
 
 MainWindow::~MainWindow()
@@ -36,17 +35,31 @@ void MainWindow::drow(){
     ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Fixed);
 }
 
-void MainWindow::add_clicked(){
-    addDialog *ad=new addDialog;
-    ad->exec();
-}
-
-void MainWindow::login_clikced(){
-    //popup dialog
-}
-
 void MainWindow::on_tableView_clicked(const QModelIndex &index)
 {
     //get row number, popup menu create
 }
 
+void MainWindow::createActions(){
+    addAct=new QAction(tr("&Add"),this);
+    connect(addAct,&QAction::triggered, this,&MainWindow::add);
+
+    loginAct=new QAction(tr("&Login"),this);
+    connect(loginAct,&QAction::triggered,this,&MainWindow::login);
+}
+
+void MainWindow::connectMenus(){
+    ui->menuBar->addAction(loginAct);
+    ui->menuBar->addAction(addAct);
+    ui->menuBar->setNativeMenuBar(true);
+}
+
+void MainWindow::add(){
+    ad=new addDialog;
+    ad->exec();
+}
+
+void MainWindow::login(){
+    am=new adminLogin();
+    am->exec();
+}

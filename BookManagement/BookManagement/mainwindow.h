@@ -5,6 +5,7 @@
 #include "header.h"
 #include "tabledata.h"
 #include "adddialog.h"
+#include "adminlogin.h"
 
 namespace Ui {
 class MainWindow;
@@ -20,19 +21,26 @@ public:
 
 private:
     Ui::MainWindow *ui;
-
+    addDialog *ad;
+    adminLogin *am;
     TableData *tableData;
     void drow();
+
 //Menu
 private slots:
-    void add_clicked();
-    void login_clikced();
+    void add();
+    void login();
 
     void on_tableView_clicked(const QModelIndex &index);
 
 private:
-    QAction clicked();
+    void createActions();
+    void connectMenus();
 
+    QMenu *addMenu;
+    QMenu *loginMenu;
+    QAction *addAct;
+    QAction *loginAct;
 };
 
 #endif // MAINWINDOW_H
