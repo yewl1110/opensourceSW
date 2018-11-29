@@ -10,6 +10,9 @@ MainWindow::MainWindow(QWidget *parent) :
     tableData=new TableData();
     drow();
 
+    addDialog *ad;
+    ad=new addDialog;
+    ad->exec();
     //add click event to menu
     connect(ui->menuAdd,SIGNAL(clicked()),this,SLOT(add_clicked()));
 }

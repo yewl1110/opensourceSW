@@ -28,17 +28,20 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
     tabledata.cpp \
-    adddialog.cpp
+    adddialog.cpp \
+    adminlogin.cpp
 
 HEADERS += \
         mainwindow.h \
     header.h \
     tabledata.h \
-    adddialog.h
+    adddialog.h \
+    adminlogin.h
 
 FORMS += \
         mainwindow.ui \
-    adddialog.ui
+    adddialog.ui \
+    adminlogin.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
