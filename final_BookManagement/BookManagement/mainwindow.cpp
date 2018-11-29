@@ -3,6 +3,7 @@
 #include "tabledata.h"
 #include <QAction>
 #include "adminlogin.h"
+#include <QLineEdit>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -14,6 +15,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
     createActions();
     connectMenus();  //function of createActions() add to menuBar
+    ui->comboBox->setEditable(true);
+    ui->comboBox->lineEdit()->setReadOnly(true);
+    ui->comboBox->lineEdit()->setAlignment(Qt::AlignCenter);
 }
 
 MainWindow::~MainWindow()
@@ -26,9 +30,12 @@ void MainWindow::drow(){
 
     ui->tableView->setModel(tableData->s_model);
     ui->tableView->setColumnHidden(0,true);
-    ui->tableView->setColumnWidth(1,300);
+    ui->tableView->setColumnWidth(1,350);
     ui->tableView->setColumnWidth(2,200);
     ui->tableView->setColumnWidth(3,200);
+    ui->tableView->setColumnWidth(4,120);
+    ui->tableView->setColumnWidth(5,70);
+    ui->tableView->setColumnWidth(6,70);
     ui->tableView->setSortingEnabled(true);
 
     ui->tableView->verticalHeader()->hide();
@@ -37,7 +44,12 @@ void MainWindow::drow(){
 
 void MainWindow::on_tableView_clicked(const QModelIndex &index)
 {
-    //get row number, popup menu create
+    //get row number
+    myRow = tableData->s_model->mapToSource(ui->tableView->currentIndex()).row();
+    ui->tableView->setColumnHidden(0,false);
+    ID=ui->tableView->model()->data(ui->tableView->model()->index(myRow,0)).toString();
+    ui->tableView->setColumnHidden(0,true);
+
 }
 
 void MainWindow::createActions(){

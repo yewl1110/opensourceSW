@@ -19,6 +19,9 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+    int myRow;
+    QString ID;
+
 private:
     Ui::MainWindow *ui;
     addDialog *ad;
@@ -41,6 +44,8 @@ private:
     QMenu *loginMenu;
     QAction *addAct;
     QAction *loginAct;
+
+    //popup menu create
 };
 
 #endif // MAINWINDOW_H

@@ -7,5 +7,6 @@
 #include <QDebug>
 #include <QMouseEvent>
 #include <QAction>
+#include <QStandardItemModel>
 
 #endif // HEADER_H

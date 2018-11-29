@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1124</width>
+    <width>1089</width>
     <height>742</height>
    </rect>
   </property>
@@ -58,7 +58,7 @@
      <rect>
       <x>40</x>
       <y>120</y>
-      <width>1041</width>
+      <width>1011</width>
       <height>551</height>
      </rect>
     </property>
@@ -73,6 +73,57 @@
     <property name="selectionBehavior">
      <enum>QAbstractItemView::SelectRows</enum>
     </property>
+   </widget>
+   <widget class="QComboBox" name="comboBox">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>50</y>
+      <width>171</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>맑은 고딕</family>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <item>
+     <property name="text">
+      <string>*</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Title</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Author</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Publisher</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Created</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Stored</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Rent</string>
+     </property>
+    </item>
    </widget>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
@@ -92,7 +143,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1124</width>
+     <width>1089</width>
      <height>25</height>
     </rect>
    </property>
