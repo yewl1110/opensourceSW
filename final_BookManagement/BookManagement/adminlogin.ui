@@ -99,7 +99,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QTextEdit" name="textEdit_2">
+      <widget class="QTextEdit" name="PWEdit">
        <property name="font">
         <font>
          <family>맑은 고딕</family>
@@ -216,9 +216,9 @@
    <widget class="QWidget" name="verticalLayoutWidget_4">
     <property name="geometry">
      <rect>
-      <x>129</x>
+      <x>130</x>
       <y>50</y>
-      <width>171</width>
+      <width>191</width>
       <height>141</height>
      </rect>
     </property>
@@ -258,7 +258,7 @@
    <widget class="QPushButton" name="changeButton">
     <property name="geometry">
      <rect>
-      <x>100</x>
+      <x>20</x>
       <y>220</y>
       <width>131</width>
       <height>41</height>
@@ -273,9 +273,25 @@
      <string>Change</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="cancleButton">
+    <property name="geometry">
+     <rect>
+      <x>180</x>
+      <y>220</y>
+      <width>121</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Cancle</string>
+    </property>
+   </widget>
   </widget>
-  <zorder>changeFrame</zorder>
-  <zorder>signinFrame</zorder>
  </widget>
  <resources/>
  <connections/>

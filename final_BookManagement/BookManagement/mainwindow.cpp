@@ -1,7 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "tabledata.h"
-#include <QAction>
 #include "adminlogin.h"
 #include <QLineEdit>
 
@@ -10,14 +9,24 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    QApplication::setAttribute(Qt::AA_DisableWindowContextHelpButton);
+
     tableData=new TableData();
     drow();
 
+    //function of createActions() add to menuBar
     createActions();
-    connectMenus();  //function of createActions() add to menuBar
+    connectMenus();
+
+    //combobox initiolize
     ui->comboBox->setEditable(true);
     ui->comboBox->lineEdit()->setReadOnly(true);
     ui->comboBox->lineEdit()->setAlignment(Qt::AlignCenter);
+
+    ui->tableView->setMouseTracking(true);
+    ui->tableView->viewport()->setMouseTracking(true);
+    ui->tableView->installEventFilter(this);
+    ui->tableView->viewport()->installEventFilter(this);
 }
 
 MainWindow::~MainWindow()
@@ -47,9 +56,8 @@ void MainWindow::on_tableView_clicked(const QModelIndex &index)
     //get row number
     myRow = tableData->s_model->mapToSource(ui->tableView->currentIndex()).row();
     ui->tableView->setColumnHidden(0,false);
-    ID=ui->tableView->model()->data(ui->tableView->model()->index(myRow,0)).toString();
+    b_info.ID=ui->tableView->model()->data(ui->tableView->model()->index(myRow,0)).toString();
     ui->tableView->setColumnHidden(0,true);
-
 }
 
 void MainWindow::createActions(){
@@ -58,7 +66,13 @@ void MainWindow::createActions(){
 
     loginAct=new QAction(tr("&Login"),this);
     connect(loginAct,&QAction::triggered,this,&MainWindow::login);
-}
+
+    //popupmenu
+    updateAct=new QAction(tr("&Update"),this);
+    mDeleteAct=new QAction(tr("&Delete"),this);
+    connect(updateAct,&QAction::triggered,this,&MainWindow::update);
+    connect(mDeleteAct,&QAction::triggered,this,&MainWindow::mDelete);
+    }
 
 void MainWindow::connectMenus(){
     ui->menuBar->addAction(loginAct);
@@ -74,4 +88,38 @@ void MainWindow::add(){
 void MainWindow::login(){
     am=new adminLogin();
     am->exec();
+}
+
+void MainWindow::contextMenuEvent(QContextMenuEvent *event){
+    if(this->obj==ui->tableView->viewport()){
+        QMenu menu;
+        menu.addAction(updateAct);
+        menu.addAction(mDeleteAct);
+        menu.exec(event->globalPos());
+        obj=nullptr;
+    }
+}
+
+void MainWindow::update(){
+    ad=new addDialog;
+    ad->exec();
+    //ad->//
+}
+
+void MainWindow::mDelete(){
+
+}
+
+bool MainWindow::eventFilter(QObject *obj,QEvent *event){
+    if(obj==ui->tableView){
+        if(event->type()==QEvent::MouseButtonPress){
+        }
+    }
+    else if(obj==ui->tableView->viewport()){
+        if(event->type()==QEvent::MouseButtonPress){
+            qDebug() << "tableView->viewport";
+            this->obj=obj;
+        }
+    }
+    return QMainWindow::eventFilter(obj,event);
 }

@@ -36,7 +36,8 @@ HEADERS += \
     header.h \
     tabledata.h \
     adddialog.h \
-    adminlogin.h
+    adminlogin.h \
+    b_infostruct.h
 
 FORMS += \
         mainwindow.ui \

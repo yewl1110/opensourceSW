@@ -6,6 +6,7 @@
 #include "tabledata.h"
 #include "adddialog.h"
 #include "adminlogin.h"
+#include "b_infostruct.h"
 
 namespace Ui {
 class MainWindow;
@@ -20,7 +21,7 @@ public:
     ~MainWindow();
 
     int myRow;
-    QString ID;
+    B_INFO b_info;
 
 private:
     Ui::MainWindow *ui;
@@ -28,14 +29,20 @@ private:
     adminLogin *am;
     TableData *tableData;
     void drow();
+    QObject *obj;
 
 //Menu
 private slots:
     void add();
     void login();
 
-    void on_tableView_clicked(const QModelIndex &index);
+    void update();
+    void mDelete();
 
+    void on_tableView_clicked(const QModelIndex &index);
+#ifndef QT_NO_CONTEXTMENU
+    void contextMenuEvent(QContextMenuEvent *event) override;
+#endif
 private:
     void createActions();
     void connectMenus();
@@ -45,6 +52,10 @@ private:
     QAction *addAct;
     QAction *loginAct;
 
+    QAction *updateAct;
+    QAction *mDeleteAct;
+
+    bool eventFilter(QObject *obj,QEvent *event);
     //popup menu create
 };
 

@@ -106,7 +106,7 @@
     </font>
    </property>
    <property name="text">
-    <string>Add to table</string>
+    <string>Insert to table</string>
    </property>
   </widget>
   <widget class="QWidget" name="verticalLayoutWidget">

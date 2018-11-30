@@ -23,3 +23,10 @@ void adminLogin::on_pushButton_clicked()
     ui->changeFrame->show();
     ui->signinFrame->hide();
 }
+
+void adminLogin::on_cancleButton_clicked()
+{
+    this->setWindowTitle("Sign in");
+    ui->changeFrame->hide();
+    ui->signinFrame->show();
+}

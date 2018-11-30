@@ -8,5 +8,6 @@
 #include <QMouseEvent>
 #include <QAction>
 #include <QStandardItemModel>
+#include <QContextMenuEvent>
 
 #endif // HEADER_H
