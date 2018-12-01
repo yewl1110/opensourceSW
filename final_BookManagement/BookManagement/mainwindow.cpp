@@ -3,6 +3,7 @@
 #include "tabledata.h"
 #include "adminlogin.h"
 #include <QLineEdit>
+#include <stdlib.h>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -10,6 +11,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     QApplication::setAttribute(Qt::AA_DisableWindowContextHelpButton);
+    b_info=new B_INFO;
 
     tableData=new TableData();
     drow();
@@ -51,14 +53,6 @@ void MainWindow::drow(){
     ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Fixed);
 }
 
-void MainWindow::on_tableView_clicked(const QModelIndex &index)
-{
-    //get row number
-    myRow = tableData->s_model->mapToSource(ui->tableView->currentIndex()).row();
-    ui->tableView->setColumnHidden(0,false);
-    b_info.ID=ui->tableView->model()->data(ui->tableView->model()->index(myRow,0)).toString();
-    ui->tableView->setColumnHidden(0,true);
-}
 
 void MainWindow::createActions(){
     addAct=new QAction(tr("&Add"),this);
@@ -101,9 +95,16 @@ void MainWindow::contextMenuEvent(QContextMenuEvent *event){
 }
 
 void MainWindow::update(){
+    b_info->title=tableData->model->index(b_info->row,1).data().toString();
+    b_info->author=tableData->model->index(b_info->row,2).data().toString();
+    b_info->publisher=tableData->model->index(b_info->row,3).data().toString();
+    b_info->created=tableData->model->index(b_info->row,4).data().toString();
+    b_info->stored=tableData->model->index(b_info->row,5).data().toString();
+    b_info->rent=tableData->model->index(b_info->row,6).data().toString();
+
     ad=new addDialog;
+    ad->setB_info(b_info);
     ad->exec();
-    //ad->//
 }
 
 void MainWindow::mDelete(){
@@ -122,4 +123,10 @@ bool MainWindow::eventFilter(QObject *obj,QEvent *event){
         }
     }
     return QMainWindow::eventFilter(obj,event);
+}
+
+void MainWindow::on_tableView_pressed(const QModelIndex &index)
+{
+    b_info->row = tableData->s_model->mapToSource(ui->tableView->currentIndex()).row();
+    b_info->ID=ui->tableView->model()->index(b_info->row,0).data().toString();
 }

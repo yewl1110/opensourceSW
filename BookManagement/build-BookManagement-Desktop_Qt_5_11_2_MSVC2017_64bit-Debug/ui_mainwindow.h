@@ -10,6 +10,7 @@
 #define UI_MAINWINDOW_H
 
 #include <QtCore/QVariant>
+#include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QHeaderView>
@@ -56,6 +57,9 @@ public:
         pushButton->setObjectName(QStringLiteral("pushButton"));
         pushButton->setGeometry(QRect(930, 50, 121, 41));
         pushButton->setFont(font);
+        QIcon icon;
+        icon.addFile(QStringLiteral("icon/icon_search.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton->setIcon(icon);
         tableView = new QTableView(centralWidget);
         tableView->setObjectName(QStringLiteral("tableView"));
         tableView->setGeometry(QRect(40, 120, 1011, 551));

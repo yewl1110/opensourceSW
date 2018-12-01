@@ -37,18 +37,18 @@ QT_MOC_LITERAL(2, 15, 0), // ""
 QT_MOC_LITERAL(3, 16, 5), // "login"
 QT_MOC_LITERAL(4, 22, 6), // "update"
 QT_MOC_LITERAL(5, 29, 7), // "mDelete"
-QT_MOC_LITERAL(6, 37, 20), // "on_tableView_clicked"
-QT_MOC_LITERAL(7, 58, 11), // "QModelIndex"
-QT_MOC_LITERAL(8, 70, 5), // "index"
-QT_MOC_LITERAL(9, 76, 16), // "contextMenuEvent"
-QT_MOC_LITERAL(10, 93, 18), // "QContextMenuEvent*"
-QT_MOC_LITERAL(11, 112, 5) // "event"
+QT_MOC_LITERAL(6, 37, 16), // "contextMenuEvent"
+QT_MOC_LITERAL(7, 54, 18), // "QContextMenuEvent*"
+QT_MOC_LITERAL(8, 73, 5), // "event"
+QT_MOC_LITERAL(9, 79, 20), // "on_tableView_pressed"
+QT_MOC_LITERAL(10, 100, 11), // "QModelIndex"
+QT_MOC_LITERAL(11, 112, 5) // "index"
 
     },
     "MainWindow\0add\0\0login\0update\0mDelete\0"
-    "on_tableView_clicked\0QModelIndex\0index\0"
     "contextMenuEvent\0QContextMenuEvent*\0"
-    "event"
+    "event\0on_tableView_pressed\0QModelIndex\0"
+    "index"
 };
 #undef QT_MOC_LITERAL
 
@@ -94,8 +94,8 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 1: _t->login(); break;
         case 2: _t->update(); break;
         case 3: _t->mDelete(); break;
-        case 4: _t->on_tableView_clicked((*reinterpret_cast< const QModelIndex(*)>(_a[1]))); break;
-        case 5: _t->contextMenuEvent((*reinterpret_cast< QContextMenuEvent*(*)>(_a[1]))); break;
+        case 4: _t->contextMenuEvent((*reinterpret_cast< QContextMenuEvent*(*)>(_a[1]))); break;
+        case 5: _t->on_tableView_pressed((*reinterpret_cast< const QModelIndex(*)>(_a[1]))); break;
         default: ;
         }
     }

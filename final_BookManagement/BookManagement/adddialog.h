@@ -14,10 +14,10 @@ class addDialog : public QDialog
     Q_OBJECT
 
 public:
-    B_INFO b_info;
+    B_INFO *b_info;
     explicit addDialog(QWidget *parent = nullptr);
-    addDialog(const QString *str,B_INFO b_info);
     ~addDialog();
+    void setB_info(B_INFO *b_info);
 
 private:
     Ui::addDialog *ui;

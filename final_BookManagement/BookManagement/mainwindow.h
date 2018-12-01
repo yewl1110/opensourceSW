@@ -21,7 +21,7 @@ public:
     ~MainWindow();
 
     int myRow;
-    B_INFO b_info;
+    B_INFO *b_info;
 
 private:
     Ui::MainWindow *ui;
@@ -39,10 +39,11 @@ private slots:
     void update();
     void mDelete();
 
-    void on_tableView_clicked(const QModelIndex &index);
 #ifndef QT_NO_CONTEXTMENU
     void contextMenuEvent(QContextMenuEvent *event) override;
 #endif
+    void on_tableView_pressed(const QModelIndex &index);
+
 private:
     void createActions();
     void connectMenus();

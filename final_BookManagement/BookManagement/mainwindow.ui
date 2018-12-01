@@ -52,6 +52,10 @@
     <property name="text">
      <string>Search</string>
     </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>icon/icon_search.png</normaloff>icon/icon_search.png</iconset>
+    </property>
    </widget>
    <widget class="QTableView" name="tableView">
     <property name="geometry">
