@@ -4,12 +4,18 @@
 #include "adminlogin.h"
 #include <QLineEdit>
 #include <stdlib.h>
+#include <QDir>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    qDebug() << QDir::currentPath();
+    ui->pushButton->setIcon(QIcon(QDir::currentPath()));
+    ui->pushButton->setIconSize(QSize(20,20));
+    ui->pushButton->setFlat(true);
+    //ui->pushButton->set
     QApplication::setAttribute(Qt::AA_DisableWindowContextHelpButton);
     b_info=new B_INFO;
 
@@ -95,6 +101,7 @@ void MainWindow::contextMenuEvent(QContextMenuEvent *event){
 }
 
 void MainWindow::update(){
+    b_info->ID=tableData->model->index(b_info->row,0).data().toString();
     b_info->title=tableData->model->index(b_info->row,1).data().toString();
     b_info->author=tableData->model->index(b_info->row,2).data().toString();
     b_info->publisher=tableData->model->index(b_info->row,3).data().toString();

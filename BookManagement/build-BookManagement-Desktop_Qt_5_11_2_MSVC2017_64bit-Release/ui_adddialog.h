@@ -159,7 +159,7 @@ public:
     void retranslateUi(QDialog *addDialog)
     {
         addDialog->setWindowTitle(QApplication::translate("addDialog", "Dialog", nullptr));
-        pushButton->setText(QApplication::translate("addDialog", "Add to table", nullptr));
+        pushButton->setText(QApplication::translate("addDialog", "Insert to table", nullptr));
         label->setText(QApplication::translate("addDialog", "Title", nullptr));
         label_3->setText(QApplication::translate("addDialog", "Author", nullptr));
         label_4->setText(QApplication::translate("addDialog", "Publisher", nullptr));

@@ -32,7 +32,7 @@ public:
     QWidget *verticalLayoutWidget_2;
     QVBoxLayout *verticalLayout_2;
     QTextEdit *IDEdit;
-    QTextEdit *textEdit_2;
+    QTextEdit *PWEdit;
     QPushButton *loginButton;
     QPushButton *pushButton;
     QFrame *changeFrame;
@@ -47,6 +47,7 @@ public:
     QTextEdit *newEdit;
     QTextEdit *checkEdit;
     QPushButton *changeButton;
+    QPushButton *cancleButton;
 
     void setupUi(QDialog *adminLogin)
     {
@@ -96,11 +97,11 @@ public:
 
         verticalLayout_2->addWidget(IDEdit);
 
-        textEdit_2 = new QTextEdit(verticalLayoutWidget_2);
-        textEdit_2->setObjectName(QStringLiteral("textEdit_2"));
-        textEdit_2->setFont(font1);
+        PWEdit = new QTextEdit(verticalLayoutWidget_2);
+        PWEdit->setObjectName(QStringLiteral("PWEdit"));
+        PWEdit->setFont(font1);
 
-        verticalLayout_2->addWidget(textEdit_2);
+        verticalLayout_2->addWidget(PWEdit);
 
         loginButton = new QPushButton(signinFrame);
         loginButton->setObjectName(QStringLiteral("loginButton"));
@@ -145,7 +146,7 @@ public:
 
         verticalLayoutWidget_4 = new QWidget(changeFrame);
         verticalLayoutWidget_4->setObjectName(QStringLiteral("verticalLayoutWidget_4"));
-        verticalLayoutWidget_4->setGeometry(QRect(129, 50, 171, 141));
+        verticalLayoutWidget_4->setGeometry(QRect(130, 50, 191, 141));
         verticalLayout_4 = new QVBoxLayout(verticalLayoutWidget_4);
         verticalLayout_4->setObjectName(QStringLiteral("verticalLayout_4"));
         verticalLayout_4->setContentsMargins(0, 0, 0, 0);
@@ -169,10 +170,12 @@ public:
 
         changeButton = new QPushButton(changeFrame);
         changeButton->setObjectName(QStringLiteral("changeButton"));
-        changeButton->setGeometry(QRect(100, 220, 131, 41));
+        changeButton->setGeometry(QRect(20, 220, 131, 41));
         changeButton->setFont(font2);
-        changeFrame->raise();
-        signinFrame->raise();
+        cancleButton = new QPushButton(changeFrame);
+        cancleButton->setObjectName(QStringLiteral("cancleButton"));
+        cancleButton->setGeometry(QRect(180, 220, 121, 41));
+        cancleButton->setFont(font2);
 
         retranslateUi(adminLogin);
 
@@ -190,6 +193,7 @@ public:
         label_4->setText(QApplication::translate("adminLogin", "New Password", nullptr));
         label_5->setText(QApplication::translate("adminLogin", "Check", nullptr));
         changeButton->setText(QApplication::translate("adminLogin", "Change", nullptr));
+        cancleButton->setText(QApplication::translate("adminLogin", "Cancle", nullptr));
     } // retranslateUi
 
 };
