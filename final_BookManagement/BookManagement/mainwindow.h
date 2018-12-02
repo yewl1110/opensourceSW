@@ -8,6 +8,8 @@
 #include "adminlogin.h"
 #include "b_infostruct.h"
 
+static int a;
+
 namespace Ui {
 class MainWindow;
 }

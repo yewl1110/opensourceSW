@@ -9,5 +9,7 @@
 #include <QAction>
 #include <QStandardItemModel>
 #include <QContextMenuEvent>
+#include <QLineEdit>
+#include <QMessageBox>
 
 #endif // HEADER_H

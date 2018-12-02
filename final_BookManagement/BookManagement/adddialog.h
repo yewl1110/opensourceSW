@@ -18,6 +18,7 @@ public:
     explicit addDialog(QWidget *parent = nullptr);
     ~addDialog();
     void setB_info(B_INFO *b_info);
+    B_INFO * returnInfo();
 
 private:
     Ui::addDialog *ui;

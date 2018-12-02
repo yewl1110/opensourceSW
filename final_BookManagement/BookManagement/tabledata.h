@@ -16,10 +16,11 @@ private:
     QSqlDatabase *db;
 
     //manage data
+public:
     void viewData();
-    bool insertData(B_INFO b_info);
-    bool updateData(B_INFO b_info);
-    bool deleteData(B_INFO b_info);
+    bool insertData(B_INFO *b_info);
+    bool updateData(B_INFO *b_info);
+    bool deleteData(B_INFO *b_info);
 };
 
 #endif // TABLEDATA_H

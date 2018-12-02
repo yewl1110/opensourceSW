@@ -2,9 +2,8 @@
 #include "ui_mainwindow.h"
 #include "tabledata.h"
 #include "adminlogin.h"
-#include <QLineEdit>
-#include <stdlib.h>
 #include <QDir>
+
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -81,13 +80,20 @@ void MainWindow::connectMenus(){
 }
 
 void MainWindow::add(){
+    do{
     ad=new addDialog;
-    ad->exec();
+    if (ad->exec()==QDialog::Accepted){
+        b_info=ad->returnInfo();
+        qDebug() << "rejected" << b_info->author;
+    }
+    }while(!tableData->insertData(b_info));
+    drow();
 }
+
 
 void MainWindow::login(){
     am=new adminLogin();
-    am->exec();
+    qDebug() << am->exec();
 }
 
 void MainWindow::contextMenuEvent(QContextMenuEvent *event){
@@ -111,11 +117,21 @@ void MainWindow::update(){
 
     ad=new addDialog;
     ad->setB_info(b_info);
-    ad->exec();
+    do{
+    if (ad->exec()==QDialog::Accepted){
+        b_info=ad->returnInfo();
+        qDebug() << b_info->title;
+    }
+    }while(!tableData->updateData(b_info));
+    drow();
 }
 
 void MainWindow::mDelete(){
-
+    QMessageBox::StandardButton msg;
+    msg=QMessageBox::question(this,"check","Are you sure you want to delete?",QMessageBox::Yes|QMessageBox::No);
+    if(QMessageBox::Yes){
+        tableData->deleteData(b_info);
+    }
 }
 
 bool MainWindow::eventFilter(QObject *obj,QEvent *event){
@@ -125,7 +141,6 @@ bool MainWindow::eventFilter(QObject *obj,QEvent *event){
     }
     else if(obj==ui->tableView->viewport()){
         if(event->type()==QEvent::MouseButtonPress){
-            qDebug() << "tableView->viewport";
             this->obj=obj;
         }
     }
