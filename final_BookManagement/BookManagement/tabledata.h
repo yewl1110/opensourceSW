@@ -21,6 +21,8 @@ public:
     bool insertData(B_INFO *b_info);
     bool updateData(B_INFO *b_info);
     bool deleteData(B_INFO *b_info);
+    void setFilter(QString str,int column=NULL);
+    void bookRent(QString ID);
 };
 
 #endif // TABLEDATA_H

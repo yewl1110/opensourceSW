@@ -7,8 +7,10 @@
 #include "adddialog.h"
 #include "adminlogin.h"
 #include "b_infostruct.h"
+#include "rentdialog.h"
+#include "rentdata.h"
+#include "rentstruct.h"
 
-static int a;
 
 namespace Ui {
 class MainWindow;
@@ -24,7 +26,7 @@ public:
 
     int myRow;
     B_INFO *b_info;
-
+    RENT * mRent;
 private:
     Ui::MainWindow *ui;
     addDialog *ad;
@@ -32,9 +34,11 @@ private:
     TableData *tableData;
     void drow();
     QObject *obj;
+    Rentdata *rentData;
 
 //Menu
 private slots:
+    void rent();
     void add();
     void login();
 
@@ -46,12 +50,18 @@ private slots:
 #endif
     void on_tableView_pressed(const QModelIndex &index);
 
+    void on_pushButton_clicked();
+
+    void on_textEdit_textChanged();
+
 private:
     void createActions();
     void connectMenus();
 
     QMenu *addMenu;
     QMenu *loginMenu;
+
+    QAction *rentAct;
     QAction *addAct;
     QAction *loginAct;
 

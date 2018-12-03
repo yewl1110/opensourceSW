@@ -15,6 +15,7 @@ class addDialog : public QDialog
 
 public:
     B_INFO *b_info;
+    B_INFO *return_info;
     explicit addDialog(QWidget *parent = nullptr);
     ~addDialog();
     void setB_info(B_INFO *b_info);
@@ -22,10 +23,12 @@ public:
 
 private:
     Ui::addDialog *ui;
+    void getInfo();
+    bool checkData(B_INFO * b_info);
 
 private slots:
-    void on_pushButton_clicked();
-
+    void on_updateButton_clicked();
+    void on_insertButton_clicked();
 };
 
 #endif // ADDDIALOG_H

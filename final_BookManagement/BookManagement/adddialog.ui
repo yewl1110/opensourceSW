@@ -90,7 +90,7 @@
     </item>
    </layout>
   </widget>
-  <widget class="QPushButton" name="pushButton">
+  <widget class="QPushButton" name="insertButton">
    <property name="geometry">
     <rect>
      <x>180</x>
@@ -132,7 +132,11 @@
         <family>맑은 고딕</family>
         <pointsize>14</pointsize>
         <weight>50</weight>
+        <italic>false</italic>
         <bold>false</bold>
+        <underline>true</underline>
+        <strikeout>false</strikeout>
+        <kerning>false</kerning>
        </font>
       </property>
       <property name="text">
@@ -146,6 +150,10 @@
        <font>
         <family>맑은 고딕</family>
         <pointsize>14</pointsize>
+        <italic>false</italic>
+        <underline>true</underline>
+        <strikeout>false</strikeout>
+        <kerning>false</kerning>
        </font>
       </property>
       <property name="text">
@@ -159,6 +167,10 @@
        <font>
         <family>맑은 고딕</family>
         <pointsize>14</pointsize>
+        <italic>false</italic>
+        <underline>true</underline>
+        <strikeout>false</strikeout>
+        <kerning>false</kerning>
        </font>
       </property>
       <property name="text">
@@ -185,6 +197,10 @@
        <font>
         <family>맑은 고딕</family>
         <pointsize>14</pointsize>
+        <italic>false</italic>
+        <underline>true</underline>
+        <strikeout>false</strikeout>
+        <kerning>false</kerning>
        </font>
       </property>
       <property name="text">
@@ -206,6 +222,25 @@
      </widget>
     </item>
    </layout>
+  </widget>
+  <widget class="QPushButton" name="updateButton">
+   <property name="geometry">
+    <rect>
+     <x>180</x>
+     <y>350</y>
+     <width>151</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>맑은 고딕</family>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Update to table</string>
+   </property>
   </widget>
  </widget>
  <resources/>

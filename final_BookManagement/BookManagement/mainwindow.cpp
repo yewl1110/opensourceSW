@@ -3,6 +3,7 @@
 #include "tabledata.h"
 #include "adminlogin.h"
 #include <QDir>
+#include "rentdata.h"
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -14,6 +15,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->pushButton->setIcon(QIcon(QDir::currentPath()));
     ui->pushButton->setIconSize(QSize(20,20));
     ui->pushButton->setFlat(true);
+
     //ui->pushButton->set
     QApplication::setAttribute(Qt::AA_DisableWindowContextHelpButton);
     b_info=new B_INFO;
@@ -60,13 +62,15 @@ void MainWindow::drow(){
 
 
 void MainWindow::createActions(){
+
     addAct=new QAction(tr("&Add"),this);
     connect(addAct,&QAction::triggered, this,&MainWindow::add);
-
     loginAct=new QAction(tr("&Login"),this);
     connect(loginAct,&QAction::triggered,this,&MainWindow::login);
 
     //popupmenu
+    rentAct=new QAction(tr("&Rent"),this);
+    connect(rentAct,&QAction::triggered,this,&MainWindow::rent);
     updateAct=new QAction(tr("&Update"),this);
     mDeleteAct=new QAction(tr("&Delete"),this);
     connect(updateAct,&QAction::triggered,this,&MainWindow::update);
@@ -80,16 +84,34 @@ void MainWindow::connectMenus(){
 }
 
 void MainWindow::add(){
-    do{
+
     ad=new addDialog;
     if (ad->exec()==QDialog::Accepted){
         b_info=ad->returnInfo();
-        qDebug() << "rejected" << b_info->author;
-    }
-    }while(!tableData->insertData(b_info));
+        tableData->insertData(b_info);
+
     drow();
+    delete ad;
+    }
 }
 
+void MainWindow::rent(){
+    b_info->ID=tableData->model->index(b_info->row,0).data().toString();
+    b_info->stored=tableData->model->index(b_info->row,5).data().toString();
+    b_info->rent=tableData->model->index(b_info->row,6).data().toString();
+    if(b_info->stored.toInt()<=b_info->rent.toInt()||0<=b_info->stored.toInt()){
+        QMessageBox::StandardButton msg;
+        msg=QMessageBox::critical(this,"","");
+        return;
+    }
+    rentDialog *r=new rentDialog(b_info->ID);
+    if(r->exec()==r->Accepted){
+        mRent=r->getRent();
+        rentData=new Rentdata();
+        rentData->getID(mRent);
+        tableData->bookRent(mRent->ID);
+    }
+}
 
 void MainWindow::login(){
     am=new adminLogin();
@@ -99,6 +121,8 @@ void MainWindow::login(){
 void MainWindow::contextMenuEvent(QContextMenuEvent *event){
     if(this->obj==ui->tableView->viewport()){
         QMenu menu;
+        menu.addAction(rentAct);
+        menu.addSeparator();
         menu.addAction(updateAct);
         menu.addAction(mDeleteAct);
         menu.exec(event->globalPos());
@@ -108,6 +132,7 @@ void MainWindow::contextMenuEvent(QContextMenuEvent *event){
 
 void MainWindow::update(){
     b_info->ID=tableData->model->index(b_info->row,0).data().toString();
+    qDebug() << "return to tableData->model" << tableData->model->index(b_info->row,0).data().toString();
     b_info->title=tableData->model->index(b_info->row,1).data().toString();
     b_info->author=tableData->model->index(b_info->row,2).data().toString();
     b_info->publisher=tableData->model->index(b_info->row,3).data().toString();
@@ -117,21 +142,22 @@ void MainWindow::update(){
 
     ad=new addDialog;
     ad->setB_info(b_info);
-    do{
-    if (ad->exec()==QDialog::Accepted){
+    if (ad->exec()==QDialog::Accepted){ //object
         b_info=ad->returnInfo();
-        qDebug() << b_info->title;
+        tableData->updateData(b_info);
     }
-    }while(!tableData->updateData(b_info));
     drow();
+    delete ad;
 }
 
 void MainWindow::mDelete(){
     QMessageBox::StandardButton msg;
-    msg=QMessageBox::question(this,"check","Are you sure you want to delete?",QMessageBox::Yes|QMessageBox::No);
-    if(QMessageBox::Yes){
+    msg=QMessageBox::question(this,"check","Are you sure you want to delete?",QMessageBox::Yes|QMessageBox::No,QMessageBox::No);
+    if(msg==QMessageBox::Yes){
+        b_info->ID=tableData->model->index(b_info->row,0).data().toString();
         tableData->deleteData(b_info);
     }
+    drow();
 }
 
 bool MainWindow::eventFilter(QObject *obj,QEvent *event){
@@ -151,4 +177,17 @@ void MainWindow::on_tableView_pressed(const QModelIndex &index)
 {
     b_info->row = tableData->s_model->mapToSource(ui->tableView->currentIndex()).row();
     b_info->ID=ui->tableView->model()->index(b_info->row,0).data().toString();
+    qDebug() << "on_tableView_pressed .." << b_info->ID;
+}
+
+void MainWindow::on_pushButton_clicked()
+{
+    enum {title=1,author=2,publisher=3};
+    tableData->setFilter(ui->textEdit->toPlainText(),ui->comboBox->currentIndex());
+    //drow();
+}
+
+void MainWindow::on_textEdit_textChanged()
+{
+    qDebug() << ui->textEdit->toPlainText();
 }

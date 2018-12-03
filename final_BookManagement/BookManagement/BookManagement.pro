@@ -29,7 +29,14 @@ SOURCES += \
         mainwindow.cpp \
     tabledata.cpp \
     adddialog.cpp \
-    adminlogin.cpp
+    adminlogin.cpp \
+    rentdialog.cpp \
+    rentdata.cpp \
+    adddialog.cpp \
+    tabledata.cpp \
+    adminlogin.cpp \
+    main.cpp \
+    mainwindow.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -37,12 +44,24 @@ HEADERS += \
     tabledata.h \
     adddialog.h \
     adminlogin.h \
-    b_infostruct.h
+    b_infostruct.h \
+    rentdialog.h \
+    rentdata.h \
+    rentstruct.h \
+    adddialog.h \
+    b_infostruct.h \
+    header.h \
+    rentstruct.h \
+    tabledata.h \
+    adminlogin.h \
+    header.h \
+    mainwindow.h
 
 FORMS += \
         mainwindow.ui \
     adddialog.ui \
-    adminlogin.ui
+    adminlogin.ui \
+    rentdialog.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
