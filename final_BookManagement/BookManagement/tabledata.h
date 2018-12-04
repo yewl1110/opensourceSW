@@ -23,6 +23,7 @@ public:
     bool deleteData(B_INFO *b_info);
     void setFilter(QString str,int column=NULL);
     void bookRent(QString ID);
+    void reutrnBook(QString ID);
 };
 
 #endif // TABLEDATA_H

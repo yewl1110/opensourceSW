@@ -5,17 +5,22 @@
 #include <QDebug>
 #include <QSqlQueryModel>
 #include "rentstruct.h"
+#include <QSortFilterProxyModel>
 
 class Rentdata
 {
     RENT * rent;
-    //QString *ID;
-    QSqlQueryModel *sql;
+    QString ID;
+
 public:
     Rentdata();
-    QSqlDatabase db;
+    QSqlDatabase *db;
     void getID(RENT * rent);
     RENT * returnID();
+    QSqlQueryModel *model;
+    QSortFilterProxyModel *s_model;
+    void viewData(QString ID);
+    void drow();
 };
 
 #endif // RENTDATA_H

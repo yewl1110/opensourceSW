@@ -10,6 +10,7 @@
 #include "rentdialog.h"
 #include "rentdata.h"
 #include "rentstruct.h"
+#include "rentview.h"
 
 
 namespace Ui {
@@ -35,6 +36,7 @@ private:
     void drow();
     QObject *obj;
     Rentdata *rentData;
+    RentView *rentview;
 
 //Menu
 private slots:
@@ -49,10 +51,9 @@ private slots:
     void contextMenuEvent(QContextMenuEvent *event) override;
 #endif
     void on_tableView_pressed(const QModelIndex &index);
-
     void on_pushButton_clicked();
-
     void on_textEdit_textChanged();
+    void on_tableView_doubleClicked(const QModelIndex &index);
 
 private:
     void createActions();

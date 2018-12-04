@@ -36,7 +36,8 @@ SOURCES += \
     tabledata.cpp \
     adminlogin.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    rentview.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -55,13 +56,15 @@ HEADERS += \
     tabledata.h \
     adminlogin.h \
     header.h \
-    mainwindow.h
+    mainwindow.h \
+    rentview.h
 
 FORMS += \
         mainwindow.ui \
     adddialog.ui \
     adminlogin.ui \
-    rentdialog.ui
+    rentdialog.ui \
+    rentview.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

@@ -69,6 +69,12 @@ void TableData::setFilter(QString str,int column){
 
 void TableData::bookRent(QString ID){
     QString update="update b_info set ";
-    update+="rent=rent-1 where id ='" + ID + "');";
+    update+="rent=rent-1 where id =" + ID + ";";
+    model->setQuery(update);
+}
+
+void TableData::reutrnBook(QString ID){
+    QString update="update b_info set ";
+    update+="rent=rent+1 where id="+ ID + ";";
     model->setQuery(update);
 }

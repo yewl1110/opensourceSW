@@ -1,13 +1,17 @@
 #include "rentdialog.h"
 #include "ui_RentDialog.h"
+#include <QDebug>
+#include <QDate>
 
 rentDialog::rentDialog(QString ID,QWidget *parent) :
     QDialog(parent),
     ui(new Ui::rentDialog)
 {
     ui->setupUi(this);
-    this->ID=ID;
+    ui->borrowedEdit->setDate(QDate::currentDate());
+    ui->dateEdit_2->setDate(QDate::currentDate().addDays(7));
     rent=new RENT;
+    rent->ID=ID;
 }
 
 rentDialog::~rentDialog()

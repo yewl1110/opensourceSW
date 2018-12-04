@@ -29,12 +29,11 @@ void addDialog::setB_info(B_INFO *info){
     this->setWindowTitle(tr("Update"));
     ui->updateButton->show();
     this->b_info=info;
-    qDebug() << "in adddialog.cpp .. " << b_info->ID;
     ui->titleEdit->setText(b_info->title);
     ui->authorEdit->setText(b_info->author);
     ui->publisherEdit->setText(b_info->publisher);
-    QDate date=QDate::fromString(b_info->created);
-    ui->createdEdit->dateChanged(date);
+    b_info->created.chop(13);
+    ui->createdEdit->setDate(QDate::fromString(b_info->created,"yyyy-MM-dd"));
     ui->storedEdit->setText(b_info->stored);
     ui->rendEdit->setText(b_info->rent);
 }
